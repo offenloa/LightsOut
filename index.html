@@ -1,0 +1,50 @@
+  
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lights Out</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="board.js"></script>
+    </head>
+    <body>
+        <div class="header">
+          <h1>Lights Out Game</h1>
+        </div>
+        <div class='content_container'>
+          <div class='side'>
+            <h3>Rules</h3>
+            <div class='center' style='margin: 0px 0px 10px;'><a href='https://en.wikipedia.org/wiki/Lights_Out_(game)'>Lights Out</a></div>
+            <span>"Lights Out" consists of a N by M grid of lights. When the game starts, a random number or a stored pattern of these lights is switched on. Pressing any of the lights will toggle it and the four adjacent lights. The goal of the puzzle is to switch all the lights off, preferably in as few button presses or as fast as possible. In this iteration, the off light is a dark green and the on light is a yellow-green.</span>
+          </div>
+          <div style="width:50%;background-color: #FFF;border: 1px solid rgb(0, 0, 0);">
+            <div class="center" style="margin: 16px 0px;">
+              <label for="new_rows">Rows:</label>
+              <input type="number" id="new_rows" placeholder="rows" value="5" style="width: 32px; margin-right: 16px;"/>
+              <label for="new_cols">Cols:</label>
+              <input type="number" id="new_cols" placeholder="cols" value="5" style="width: 32px; margin-right: 16px;"/>
+              <input id="new_game_button" type="button" value="Create new tiles" />
+            </div>
+            <div class="clearfix">
+              <div id="game_container">
+                  <!--placeholder for game -->
+              </div>
+            </div>
+            <div class="center status_msg">
+                <strong>Game Status: </strong> <span id="status"></span>
+            </div>
+            <div class="center status_msg">
+                <strong>Timer: </strong> <span id="timer">00:00</span>
+            </div>
+            <div class="center status_msg">
+                <strong>Clicks Made: </strong> <span id="clicks_made"></span>
+            </div>
+            <div class="center"><input id="randomize_button" type="button" value="Start!" style='margin: 0px 0px 16px'/></div>
+          </div>
+          <div class='side'>
+            <h3>Leaderboard</h3>
+            <span>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</span>
+          </div>
+        </div>
+    </body>
+</html>

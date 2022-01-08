@@ -1,0 +1,64 @@
+body {
+  background-color: #CCC;
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.header {
+  padding-top: 10px;
+  padding-left: 10px;
+  text-align: left;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+h1 {
+    margin-bottom: 0px;
+}
+h3 {
+    text-align: center;
+}
+.row
+{
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+.content_container {
+    display: flex;
+    margin: 0px;
+}
+.side {
+    width: 25%;
+    border: 1px solid rgb(0, 0, 0);
+
+}
+#game_container {
+    margin-bottom: 10px;
+    padding: 15px;
+
+}
+.cell {
+    width: 25px;
+    height: 25px;
+    border: 1px solid darkgreen;
+    padding: 5px 5px 5px 5px;
+  
+    background-color: green;
+  
+    font-size: 16px;
+    text-align: center;
+    
+    cursor: pointer;
+    transition-property: background-color, box-shadow;
+}
+.cell.toggled {
+    background-color: greenyellow;
+}
+.status_msg {
+    margin-bottom: 10px;
+}
+.center {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
