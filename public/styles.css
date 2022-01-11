@@ -30,7 +30,7 @@ h3 {
 .side {
     width: 25%;
     border: 1px solid rgb(0, 0, 0);
-
+    padding: 0px 8px;
 }
 #game_container {
     margin-bottom: 10px;

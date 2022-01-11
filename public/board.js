@@ -198,6 +198,22 @@ window.onload = function() {
       game.randomize(game.options['rows']*game.options['cols']);
     });
 
+    document.getElementById('submit').addEventListener("click", function() {
+      let nn = document.getElementById("name").value;
+      console.log(nn);
+      fetch('http://localhost:8080/leaderboard?name='+nn+'&time='+getTime(), {
+      method: 'POST',
+      body: {},
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+      })
+      .then(response => response)
+      .then(json => {
+          console.log(json);
+      });
+    });
+
     game = new Board()
 }
 
@@ -210,3 +226,9 @@ function resetCounter() {
   counter = 0;
   document.getElementById('timer').textContent = (Math.floor(counter/60)).toString().padStart(2,'0') + ':' + (counter%60).toString().padStart(2,'0');
 }
+
+function getTime() {
+  return ((Math.floor(counter/60)).toString().padStart(2,'0') + ':' + (counter%60).toString().padStart(2,'0')).toString();
+}
+
+
