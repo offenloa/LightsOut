@@ -60,11 +60,11 @@ class Board {
 
             //assign proper text and class to cells (needed when loading a game)
             let add_class = "";
-            if (cellObj.toggle == 1) {
-              add_class = "toggled";
-            } 
+            //if (cellObj.toggle == 1) {
+            //  add_class = "toggled";
+            //} 
 
-            content += `<div class="cell ${add_class}" data-xpos="${c}" data-ypos="${r}"></div>`;
+            content += `<div class="cell ${add_class}" data-xpos="${c}" data-ypos="${r}">0</div>`;
           }
           content += "</div>";
         }
@@ -91,60 +91,18 @@ class Board {
         }
     }
     is_solved() {
-      for (let r = 0; r < this.options["rows"]; r++) {
-        for (let c = 0; c < this.options["cols"]; c++) {
-            if (this.grid[r][c].toggle == 1) {
-              return false
-            }
-        }
-      }
-      return true;
-    }
-    toggle_cell(cell) {
-        cell.toggle = (cell.toggle+1)%2
-    }
-    toggle_cells(cell) {
-        if (this.status != 0){
-          return
-        }
-        
-        let x = cell.xpos;
-        let y = cell.ypos;
-        this.toggle_cell(this.grid[y][x])
-        if (x>0) {
-            this.toggle_cell(this.grid[y][x-1]);
-        }
-        if (x<this.options['cols']-1) {
-            this.toggle_cell(this.grid[y][x+1]);
-        }
-        if (y>0) {
-            this.toggle_cell(this.grid[y-1][x]);
-        }
-        if (y<this.options['rows']-1) {
-            this.toggle_cell(this.grid[y+1][x]);
-        }
-        this.render()
-        console.log(x,y)
-    }
-    randomize(count) {
-        for (let i = 0; i<count; i++){
-            let row = Math.floor(Math.random()*this.options['rows'])
-            let col = Math.floor(Math.random()*this.options['cols'])
-            this.toggle_cells(this.grid[row][col])
-        }
+      return false
     }
 }
 
 class Cell {
     constructor({
         xpos,
-        ypos,
-        toggle = 0
+        ypos
     }) {
         Object.assign(this, {
             xpos,
-            ypos,
-            toggle
+            ypos
         })
     }
 
@@ -170,15 +128,16 @@ window.onload = function() {
               game.grid[target.getAttribute("data-ypos")][
                 target.getAttribute("data-xpos")
               ];
+            console.log(cell.ypos, cell.xpos);
             if (game.status == 0) {
               game.clicksMade++;
             }
-            game.toggle_cells(cell)
             document.getElementById('clicks_made').textContent = game.clicksMade;
+            //call to cell click here
           }
     });
 
-    document.getElementById('new_game_button').addEventListener("click", function() {
+    document.getElementById('resize').addEventListener("click", function() {
         const opts = {
             rows: parseInt(document.getElementById("new_rows").value, 10),
             cols: parseInt(document.getElementById("new_cols").value, 10),
@@ -194,24 +153,8 @@ window.onload = function() {
       counter = 0;
       resetCounter();
       clearInterval(myTimer);
-      myTimer = setInterval(myCounter, 1000)
-      game.randomize(game.options['rows']*game.options['cols']);
-    });
-
-    document.getElementById('submit').addEventListener("click", function() {
-      let nn = document.getElementById("name").value;
-      console.log(nn);
-      fetch('http://localhost:8080/leaderboard?name='+nn+'&time='+getTime(), {
-      method: 'POST',
-      body: {},
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8'
-      }
-      })
-      .then(response => response)
-      .then(json => {
-          console.log(json);
-      });
+      myTimer = setInterval(myCounter, 1000);
+      game.render();
     });
 
     game = new Board()

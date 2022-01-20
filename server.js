@@ -9,12 +9,6 @@ var url = 'mongodb://localhost:27017/'
 
 app.use(express.static("public"))
 
-
-app.post('/leaderboard', function(req, res) {
-    console.log(req.query);
-    res.send("Recieved a post request");
-})
-
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
